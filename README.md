@@ -11,7 +11,7 @@
 
 ## Дисциплины и работы
 
-* тут ещё ничего нет [:)](https://www.youtube.com/watch?v=dQw4w9WgXcQ)
+* [Информатика и теория алгоритмов](https://github.com/wowlikon/KUBSU/tree/inf_teor_alg)
 
 ---
 
