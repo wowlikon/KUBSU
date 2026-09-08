@@ -14,6 +14,6 @@ int main() {
     cout << "A+B = " << a + b << endl;
     cout << "A-B = " << a - b << endl;
     cout << "A*B = " << a * b << endl;
-    cout << "A/B = " << a / b << endl;
+    cout << "A/B = " << a / b << endl; // деление int возвращает целую часть
     return 0;
 }

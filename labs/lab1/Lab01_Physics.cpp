@@ -7,7 +7,7 @@ int main() {
     cout << "Enter speed v: "; cin >> v;
     cout << "Enter time t: ";  cin >> t;
 
-    double s = v * t;
+    double s = v * t; // вычисление по формуле S = v * t
     cout << "Distance S = " << s << endl;
     return 0;
 }

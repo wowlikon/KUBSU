@@ -1,6 +1,6 @@
 #include <iostream>
 
-int main() {
-    std::cout << "Hello, World!\n";
-    return 0;
+int main() { // Главная функция
+    std::cout << "Hello, World!\n"; // Вывод сообщения
+    return 0; // exit-код
 }
