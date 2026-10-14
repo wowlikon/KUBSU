@@ -1,30 +1,44 @@
+#include <algorithm>
 #include <clocale>
+#include <cstdlib>
 #include <iostream>
-#include <iomanip>
 #include <math.h>
+#include <vector>
+
+using std::cin;
+using std::cout;
+using std::endl;
+using std::find;
+using std::vector;
 
 int main() {
+    int min, max, k;
     setlocale(0, "Russian");
 
-    double a,b,h,x,y,s,p;
-    int n,i;
+    cout << "Диапазон: "; cin >> min;
+    do {
+        cout << "\033[A\033[2K\rДиапазон: "
+            << min << " - "; cin >> max;
+    } while (min > max);
 
-    std::cout << "Введите a,b,h,n" << std::endl;
-    std::cin >> a >> b >> h >> n;
-    x=a;
+    do {
+        cout << "\033[A\033[2K\rВведите k:"; cin >> k;
+    } while (k <= 0);
 
-    do
-    {
-        p = s = 1;
-        for (i=1; i<=n; i++) {
-            p *= log(9)*x/i;
-            s += p;
-        }
-        y=pow(9,x);
-        std::cout << std::setw(15) << x << std::setw(15) << y << std::setw(15) << s << std::endl;
-        x += h;
-    } while (x <= b+h/2);
+    vector<int> array, unique;
 
-    std::cout << std::endl;
+    for (int i=0; i < k; i++) {
+        int value = rand() % (max - min + 1) + min;
+
+        if (find(array.begin(), array.end(), value) == array.end())
+            unique.push_back(value);
+
+        array.push_back(value);
+
+    }
+
+    cout << "A[ "; for (int n : array ) cout << n << " "; cout << "]" << endl;
+    cout << "U[ "; for (int n : unique) cout << n << " "; cout << "]" << endl;
+
     return 0;
 }
