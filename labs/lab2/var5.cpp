@@ -1,39 +1,44 @@
+#include <cmath>
 #include <math.h>
 #include <iostream>
+#include <stdexcept>
 
-using namespace std;
+using std::cin;
+using std::cout;
+using std::endl;
+using std::sqrt;
+using std::runtime_error;
 
-double f(double x, int func) {
-    switch (func) {
-        case 1:
-            return sinh(x);
-        case 2:
-            return pow(x, 2);
-        case 3:
-            return exp(x);
-        default:
-            return 0.0;
+double func(uint func_type, double value) {
+    switch (func_type) {
+        case 1: return sinh(value);
+        case 2: return pow(value, 2);
+        case 3: return exp(value);
+        default: throw runtime_error("Incorrect func type!");
     }
 }
 
 int main() {
-    uint f;
-    double x, y, z;
-    double a, b, c;
+    double x, y, v, result;
 
-    cout << "Functions:";
-    cout << "1. f(x) = sh(x)" << endl;
-    cout << "2. f(x) = x^2" << endl;
-    cout << "3. f(x) = e^x" << endl;
-    cout << "Select function:"; cin >> f;
+    {
+        uint f;
 
-    cout << "X:"; cin >> x;
-    cout << "Y:"; cin >> y;
+        cout << "Functions:" << endl;
+        cout << "1. f(x) = sh(x)" << endl;
+        cout << "2. f(x) = x^2" << endl;
+        cout << "3. f(x) = e^x" << endl;
+        cout << "Select function:"; cin >> f;
+        cout << endl; func(f, 1);
 
-    a = pow(y, -sqrt(fabs(x)));
-    b = x - (y/2);
-    c = pow(sin(atan(z)), 2);
+        cout << "X:"; cin >> x;
+        cout << "Y:"; cin >> y;
+        cout << endl; v = func(f, x);
+    }
 
-    cout << "Result: " << (log(a)*b+c) << endl;
-    return 0;
+    if (x > y) result = y * sqrt(v) + 3 * sin(x);
+    else if (x < y) result = sqrt(fabs(v));
+    else result = pow(fabs(v), 1/3) + pow(x, 3) / y;
+
+    cout << "Result: " << result << endl; return 0;
 }

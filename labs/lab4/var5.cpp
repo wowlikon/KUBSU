@@ -1,41 +1,44 @@
+#include <algorithm>
 #include <clocale>
-#include <cmath>
-#include <math.h>
+#include <cstdlib>
 #include <iostream>
-#include <iomanip>
+#include <math.h>
+#include <vector>
 
-using std::exp;
 using std::cin;
 using std::cout;
 using std::endl;
-using std::setw;
+using std::find;
+using std::vector;
 
 int main() {
-    int n, i;
-    double a, b, h, x, y, p, s;
+    int min, max, k;
+    setlocale(0, "Russian");
 
-    setlocale(LC_ALL, "Russian");
-    cout << "Диапазон: "; cin >> a;
+    cout << "Диапазон: "; cin >> min;
     do {
-        cout << "\033[A\033[2K\rДиапазон: " << a << " - ";
-        cin >> b;
-    } while (a > b);
-    cout << "\033[A\033[2K\rДиапазон: " << a << " - " << b << endl;
-    cout << "N: "; cin >> n;
+        cout << "\033[A\033[2K\rДиапазон: "
+            << min << " - "; cin >> max;
+    } while (min > max);
 
-    x = a;
-    h = (b-a) / 10;
-    cout << setw(15) << "x" << setw(15) << "y(x)" << setw(15) << "s(x)" << endl;
     do {
-        p = s = 1;
-        for (i = 1; i <= n; i++) {
-            p *= pow(x, 2) / i;
-            s += (2 * i + 1) * p;
-        }
+        cout << "\033[A\033[2K\rВведите k:"; cin >> k;
+    } while (k <= 0);
 
-        y = (1 + 2 * pow(x, 2))*exp(pow(x, 2));
-        cout << setw(15) << x << setw(15) << y << setw(15) << s << endl;
-        x += h;
-    } while (x <= b+h/2);
+    vector<int> array, unique;
+
+    for (int i=0; i < k; i++) {
+        int value = rand() % (max - min + 1) + min;
+
+        if (find(array.begin(), array.end(), value) == array.end())
+            unique.push_back(value);
+
+        array.push_back(value);
+
+    }
+
+    cout << "A[ "; for (int n : array ) cout << n << " "; cout << "]" << endl;
+    cout << "U[ "; for (int n : unique) cout << n << " "; cout << "]" << endl;
+
     return 0;
 }
