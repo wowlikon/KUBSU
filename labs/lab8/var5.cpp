@@ -7,6 +7,7 @@ using std::asin;
 using std::cout;
 using std::endl;
 using std::setw;
+using std::fixed;
 using std::setprecision;
 
 typedef double (*uf)(double, double, int&);
@@ -20,7 +21,7 @@ int main() {
 
     double a = -1.0, b = 1.0;
     double h = (b - a) / 10.0;
-    double eps = 1e-3;
+    double eps = 1e-9;
 
     cout << "Function table" << endl;
     cout << setw(15) << "x" << setw(15) << "Y(x)" << setw(10) << "k" << endl;
@@ -33,8 +34,9 @@ int main() {
 void tabl(double a, double b, double h, double eps, uf fun) {
     int k = 0; double res;
     for (double x = a; x <= b + h / 2.0; x += h) {
+        if (fabs(x) < 1e-9) x = 0.0;
         res = fun(x, eps, k);
-        cout << res << setprecision(4) << setw(15) << x
+        cout << fixed << setprecision(4) << setw(15) << x
              << setw(15) << res << setw(10) << k << endl;
     }
 }
@@ -50,7 +52,7 @@ double s(double x, double eps, int &k) {
 
     while (fabs(u) > eps && k < 100000) {
         sum += u; k++;
-        u *= (x*x)-pow(2.0+(k + 1)-1.0, 2) / (2.0 * (k + 1) * (2.0 * (k + 1) + 1.0));
+        u *= (x*x)*pow(2.0 * (k + 1) - 1.0, 2) / (2.0 * (k + 1) * (2.0 * (k + 1) + 1.0));
     }
 
     if (k==0 && fabs(u) <= eps) {
